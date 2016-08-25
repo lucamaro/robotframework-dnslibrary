@@ -20,12 +20,7 @@ setup:
 test: unit
 
 unit:
-	@coverage run --branch `which nosetests` -vv --with-yanc -s tests/
-	@coverage report -m --fail-under=80
-
-# show coverage in html format
-coverage-html: unit
-	@coverage html
+	@nosetests.exe --with-coverage --cover-erase --cover-html --cover-package DNSLibrary
 
 # run tests against all supported python versions
 tox:

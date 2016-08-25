@@ -10,7 +10,7 @@
 
 from preggy import expect
 
-from robotframework_dnslibrary import __version__
+from DNSLibrary import __version__
 from tests.base import TestCase
 
 
