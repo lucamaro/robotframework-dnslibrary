@@ -12,15 +12,18 @@ list:
 # required for list
 no_targets__:
 
-# install all dependencies (do not forget to create a virtualenv first)
+# install
 setup:
-	@pip install -U -e .\[tests\]
+	@python setup.py install
 
 # test your application (tests in the tests/ directory)
-test: unit
+test: unit e2e
 
 unit:
-	@nosetests.exe --with-coverage --cover-erase --cover-html --cover-package DNSLibrary
+	@nosetests.exe --with-yanc --with-coverage --cover-erase --cover-html --cover-package DNSLibrary #--cover-min-percentage=80
+
+e2e:
+	@pybot -d tmp/ tests/e2e.txt
 
 # run tests against all supported python versions
 tox:
@@ -28,3 +31,6 @@ tox:
 
 docs:
 	@python -m robot.libdoc DNSLibrary docs/index.html
+
+clean:
+	@rm -rf build/ dist/ tmp/ cover/ robotframework_dnslibrary.egg-info
