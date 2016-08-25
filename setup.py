@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 # This file is part of robotframework-dnslibrary.
-# https://github.com/someuser/somepackage
+# https://github.com/lucamaro/robotframework-dnslibrary
 
-# Licensed under the MIT license:
-# http://www.opensource.org/licenses/MIT-license
-# Copyright (c) 2016, lucamaro <luca.maragnani@gmail.com>
+# Licensed under the Apache License 2.0 license:
+# http://www.opensource.org/licenses/Apache-2.0
+# Copyright (c) 2016, Luca Maragnani <luca.maragnani@gmail.com>
 
 from setuptools import setup, find_packages
 from DNSLibrary import __version__
@@ -33,14 +33,13 @@ Robotframework library to test DNS service
     keywords='',
     author='lucamaro',
     author_email='luca.maragnani@gmail.com',
-    url='https://github.com/someuser/somepackage',
-    license='MIT',
+    url='https://github.com/lucamaro/robotframework-dnslibrary',
+    license='Apache License 2.0',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: Apache License 2.0 License',
         'Natural Language :: English',
-        'Operating System :: Unix',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: Implementation :: PyPy',
@@ -51,6 +50,7 @@ Robotframework library to test DNS service
     install_requires=[
         # add your dependencies here
         # remember to use 'package-name>=x.y.z,<x.y+1.0' notation (this way you get bugfixes)
+        'dsnpython'
     ],
     extras_require={
         'tests': tests_require,

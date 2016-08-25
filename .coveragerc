@@ -1,9 +1,9 @@
 # This file is part of robotframework-dnslibrary.
-# https://github.com/someuser/somepackage
+# https://github.com/lucamaro/robotframework-dnslibrary
 
-# Licensed under the MIT license:
-# http://www.opensource.org/licenses/MIT-license
-# Copyright (c) 2016, lucamaro <luca.maragnani@gmail.com>
+# Licensed under the Apache License 2.0 license:
+# http://www.opensource.org/licenses/Apache-2.0
+# Copyright (c) 2016, Luca Maragnani <luca.maragnani@gmail.com>
 
 [run]
 omit =
