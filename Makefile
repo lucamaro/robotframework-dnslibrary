@@ -27,4 +27,4 @@ tox:
 	@tox
 
 docs:
-    @python -m robot.libdoc DNSLibrary docs/index.html
+	@python -m robot.libdoc DNSLibrary docs/index.html
