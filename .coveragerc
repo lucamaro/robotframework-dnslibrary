@@ -1,0 +1,22 @@
+# This file is part of robotframework-dnslibrary.
+# https://github.com/someuser/somepackage
+
+# Licensed under the MIT license:
+# http://www.opensource.org/licenses/MIT-license
+# Copyright (c) 2016, lucamaro <luca.maragnani@gmail.com>
+
+[run]
+omit =
+    *tests.py
+branch = True
+source =
+    robotframework_dnslibrary
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    from urllib.parse import parse_qs
+    except ImportError:
