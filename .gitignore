@@ -29,6 +29,8 @@ var/
 .installed.cfg
 *.egg
 cover/
+tmp/
+
 
 # Installer logs
 pip-log.txt
