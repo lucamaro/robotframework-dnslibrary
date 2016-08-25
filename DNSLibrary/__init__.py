@@ -54,7 +54,7 @@ ATTRS = {
 
 def _print_answers(answers, rr_type):
     '''
-        Method documentation
+        Takes a list of answers and print them into log file
     '''
     for i in range(len((answers))):
         attrs_string = ""
@@ -72,7 +72,8 @@ def _print_answers(answers, rr_type):
 
 class DNSLibrary(object):
     '''
-        Class docstring
+    This is DNSLibrary version 0.1.0 for RobotFramework.
+    The aim is testing a DNS target as a client, using dnspython library.
     '''
 
     def __init__(self, target=None):
@@ -106,7 +107,8 @@ class DNSLibrary(object):
     @keyword('Query ${rr_type:[^ ]+} for ${rr_query:[^ ]+}')
     def query_record(self, rr_type, rr_query):
         '''
-            Resolve A record, keep an internal answer object to be analized
+            Resolve a record of type ``rr_type``, keep an internal answer 
+            object to be analized
         '''
         self.answers = self.__get_resolver().query(rr_query, rr_type)
         _print_answers(self.answers, rr_type)
@@ -124,13 +126,13 @@ class DNSLibrary(object):
         '''
             Assert that the received answer is equal to parameters specified
             Parameters:
-                + ans_number: select answer number
-                + ans_type: query type (e.g. "A")
-                + kwargs: resource specific data
+            - ans_number: select answer number
+            - ans_type: query type (e.g. "A")
+            - kwargs: resource specific data
 
             Examples:
-            Answer Is   ${0}    A   address=10.10.10.10
-            Answer Is   ${0}    MX   exchange=mx.example.org    preference=${10}
+            | Answer Is   ${0}    A   address=10.10.10.10
+            | Answer Is   ${0}    MX   exchange=mx.example.org    preference=${10}
         '''
         answer = self.answers[ans_number]
         errors = []

@@ -26,5 +26,5 @@ unit:
 tox:
 	@tox
 
-#docs:
-	#@cd robotframework_dnslibrary/docs && make html && open _build/html/index.html
+docs:
+    @python -m robot.libdoc DNSLibrary docs/index.html
