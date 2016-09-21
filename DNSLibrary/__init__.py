@@ -83,13 +83,20 @@ class DNSLibrary(object):
         self.target = target
         self.resolver = None
         self.answers = None
+        self.use_tcp = False
 
-    def set_target(self, target):
+    def set_dns_target(self, target):
         '''
             Set the new DNS target and force the reinitialization of resolver
         '''
         self.target = target
         self.resolver = None
+
+    def set_use_tcp(self, use_tcp=True):
+        '''
+            Set TCP/UDP usage (by default will be used UDP)
+        '''
+        self.use_tcp = use_tcp
 
     def __get_resolver(self):
         '''
@@ -107,10 +114,11 @@ class DNSLibrary(object):
     @keyword('Query ${rr_type:[^ ]+} for ${rr_query:[^ ]+}')
     def query_record(self, rr_type, rr_query):
         '''
-            Resolve a record of type ``rr_type``, keep an internal answer 
+            Resolve a record of type ``rr_type``, keep an internal answer
             object to be analized
         '''
-        self.answers = self.__get_resolver().query(rr_query, rr_type)
+        logger.debug('Sending query to ' + str(self.target) + ' with protocol ' + ('TCP' if self.use_tcp else 'UDP'))
+        self.answers = self.__get_resolver().query(rr_query, rr_type, tcp=self.use_tcp)
         _print_answers(self.answers, rr_type)
 
     @keyword('Server Returned ${n_answers:\d+} Answers')
@@ -119,7 +127,7 @@ class DNSLibrary(object):
             Method documentation
         '''
         if len(self.answers) != int(n_answers):
-            raise Exception("Expected " + str(n_answers) + \
+            raise Exception("Expected " + str(n_answers) +
                             " answers, but received (" + len(self.answers) + ")")
 
     def answer_is(self, ans_number, ans_type, **kwargs):
@@ -143,7 +151,7 @@ class DNSLibrary(object):
                     "Field " +
                     attr +
                     " not found. Answer has fields: " +
-                    dir(answer))
+                    str(dir(answer)))
 
             if re.match(re.compile(str(kwargs[attr])), str(
                     getattr(answer, attr))) is None:

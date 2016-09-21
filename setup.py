@@ -42,7 +42,7 @@ Robotframework library to test DNS service
         'Natural Language :: English',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: Implementation :: PyPy',
+        'Programming Language :: Python :: Implementation :: Jython',
         'Operating System :: OS Independent',
     ],
     packages=find_packages(),
@@ -50,7 +50,8 @@ Robotframework library to test DNS service
     install_requires=[
         # add your dependencies here
         # remember to use 'package-name>=x.y.z,<x.y+1.0' notation (this way you get bugfixes)
-        'dsnpython'
+        'dnspython',
+        'robotframework'
     ],
     extras_require={
         'tests': tests_require,

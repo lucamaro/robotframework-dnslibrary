@@ -14,3 +14,8 @@ Query MX
 
 Non existing record
     Run Keyword And Expect Error    NXDOMAIN    Query A For wwww.google.com
+
+Use TCP
+    Set Use Tcp
+    Query A For www.fastweb.it
+    Answer is    ${0}    A    address=62\\.101\\.76\\.232
