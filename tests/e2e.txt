@@ -4,12 +4,12 @@ Library           DNSLibrary    target=8.8.8.8
 *** Test Cases ***
 Query A
     Query A For www.fastweb.it
-    Answer is    ${0}    A    address=62\\.101\\.76\\.232
+    Answer is    address=62.101.76.232
 
 Query MX
     Query MX For fastweb.it
-    Answer is    ${0}    MX    exchange=mx[^.]+\\.fastweb\\.it\\.
-    Answer is    ${0}    MX    preference=\\d\\d
+    Answer is regex   ${0}    exchange=mx[^.]+\\.fastweb\\.it\\.
+    Answer is regex   ${0}    preference=\\d\\d
     Server Returned 6 Answers
 
 Non existing record
@@ -18,4 +18,4 @@ Non existing record
 Use TCP
     Set Use Tcp
     Query A For www.fastweb.it
-    Answer is    ${0}    A    address=62\\.101\\.76\\.232
+    Answer is    address=62.101.76.232

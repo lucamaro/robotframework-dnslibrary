@@ -130,18 +130,37 @@ class DNSLibrary(object):
             raise Exception("Expected " + str(n_answers) +
                             " answers, but received (" + len(self.answers) + ")")
 
-    def answer_is(self, ans_number, ans_type, **kwargs):
+                            
+    def answer_is(self, ans_number=0, **kwargs):
         '''
             Assert that the received answer is equal to parameters specified
             Parameters:
             - ans_number: select answer number
-            - ans_type: query type (e.g. "A")
             - kwargs: resource specific data
 
             Examples:
-            | Answer Is   ${0}    A   address=10.10.10.10
-            | Answer Is   ${0}    MX   exchange=mx.example.org    preference=${10}
+            | Answer Is   address=10.10.10.10
+            | Answer Is   ${1}    exchange=mx2.example.org    preference=${20}
         '''
+        self.__answer_is(False, ans_number, **kwargs)
+
+        
+    def answer_is_regex(self, ans_number=0, **kwargs):
+        '''
+            Assert that the received answer matches to parameters specified regex
+            Parameters:
+            - ans_number: select answer number
+            - kwargs: resource specific data regex
+
+            Examples:
+            | Answer Is   address=10\\.10\\.10\\.10
+            | Answer Is   ${1}    exchange=mx[12]\\.example\\.org
+        '''
+        self.__answer_is(True, ans_number, **kwargs)
+
+        
+    def __answer_is(self, use_regex, ans_number, **kwargs):
+        
         answer = self.answers[ans_number]
         errors = []
 
@@ -153,8 +172,20 @@ class DNSLibrary(object):
                     " not found. Answer has fields: " +
                     str(dir(answer)))
 
-            if re.match(re.compile(str(kwargs[attr])), str(
+            if use_regex and re.match(re.compile(str(kwargs[attr])), str(
                     getattr(answer, attr))) is None:
+                errors.append(
+                    "Expected " +
+                    attr +
+                    " equals to " +
+                    str(kwargs[attr]) +
+                    " but found " +
+                    str(getattr(
+                        answer,
+                        attr)))
+
+            if not use_regex and str(kwargs[attr]) != str(
+                    getattr(answer, attr)):
                 errors.append(
                     "Expected " +
                     attr +
@@ -171,3 +202,7 @@ class DNSLibrary(object):
                 string.join(
                     errors,
                     '\n\t'))
+
+
+
+                    

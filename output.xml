@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20160826 08:56:46.979" generator="Robot 3.0 (Python 2.7.11 on win32)">
+<suite source="C:\Users\lmaragnani\git-repo\robotframework-dnslibrary\tests\e2e.txt" id="s1" name="E2E">
+<test id="s1-t1" name="Query A">
+<kw name="Query A For www.fastweb.it" library="DNSLibrary">
+<doc>Resolve a record of type ``rr_type``, keep an internal answer</doc>
+<msg timestamp="20160826 08:56:47.108" level="INFO">Attributes for record 0: address: 62.101.76.232</msg>
+<status status="PASS" endtime="20160826 08:56:47.108" starttime="20160826 08:56:47.077"></status>
+</kw>
+<kw name="Answer Is" library="DNSLibrary">
+<doc>Assert that the received answer is equal to parameters specified</doc>
+<arguments>
+<arg>${0}</arg>
+<arg>A</arg>
+<arg>address=62\\.101\\.76\\.232</arg>
+</arguments>
+<status status="PASS" endtime="20160826 08:56:47.109" starttime="20160826 08:56:47.108"></status>
+</kw>
+<status status="PASS" endtime="20160826 08:56:47.109" critical="yes" starttime="20160826 08:56:47.076"></status>
+</test>
+<test id="s1-t2" name="Query MX">
+<kw name="Query MX For fastweb.it" library="DNSLibrary">
+<doc>Resolve a record of type ``rr_type``, keep an internal answer</doc>
+<msg timestamp="20160826 08:56:47.143" level="INFO">Attributes for record 0: exchange: mx020.fastweb.it., preference: 15</msg>
+<msg timestamp="20160826 08:56:47.143" level="INFO">Attributes for record 1: exchange: mxk1.fastweb.it., preference: 50</msg>
+<msg timestamp="20160826 08:56:47.143" level="INFO">Attributes for record 2: exchange: mx021.fastweb.it., preference: 15</msg>
+<msg timestamp="20160826 08:56:47.143" level="INFO">Attributes for record 3: exchange: mx022.fastweb.it., preference: 15</msg>
+<msg timestamp="20160826 08:56:47.143" level="INFO">Attributes for record 4: exchange: mxk2.fastweb.it., preference: 50</msg>
+<msg timestamp="20160826 08:56:47.143" level="INFO">Attributes for record 5: exchange: mx023.fastweb.it., preference: 15</msg>
+<status status="PASS" endtime="20160826 08:56:47.143" starttime="20160826 08:56:47.113"></status>
+</kw>
+<kw name="Answer Is" library="DNSLibrary">
+<doc>Assert that the received answer is equal to parameters specified</doc>
+<arguments>
+<arg>${0}</arg>
+<arg>MX</arg>
+<arg>exchange=mx[^.]+\\.fastweb\\.it\\.</arg>
+</arguments>
+<status status="PASS" endtime="20160826 08:56:47.144" starttime="20160826 08:56:47.144"></status>
+</kw>
+<kw name="Answer Is" library="DNSLibrary">
+<doc>Assert that the received answer is equal to parameters specified</doc>
+<arguments>
+<arg>${0}</arg>
+<arg>MX</arg>
+<arg>preference=\\d\\d</arg>
+</arguments>
+<status status="PASS" endtime="20160826 08:56:47.145" starttime="20160826 08:56:47.144"></status>
+</kw>
+<kw name="Server Returned 6 Answers" library="DNSLibrary">
+<doc>Method documentation</doc>
+<status status="PASS" endtime="20160826 08:56:47.145" starttime="20160826 08:56:47.145"></status>
+</kw>
+<status status="PASS" endtime="20160826 08:56:47.146" critical="yes" starttime="20160826 08:56:47.112"></status>
+</test>
+<test id="s1-t3" name="Non existing record">
+<kw name="Run Keyword And Expect Error" library="BuiltIn">
+<doc>Runs the keyword and checks that the expected error occurred.</doc>
+<arguments>
+<arg>NXDOMAIN</arg>
+<arg>Query A For wwww.google.com</arg>
+</arguments>
+<kw name="Query A For wwww.google.com" library="DNSLibrary">
+<doc>Resolve a record of type ``rr_type``, keep an internal answer</doc>
+<msg timestamp="20160826 08:56:47.198" level="FAIL">NXDOMAIN</msg>
+<status status="FAIL" endtime="20160826 08:56:47.198" starttime="20160826 08:56:47.148"></status>
+</kw>
+<status status="PASS" endtime="20160826 08:56:47.198" starttime="20160826 08:56:47.148"></status>
+</kw>
+<status status="PASS" endtime="20160826 08:56:47.199" critical="yes" starttime="20160826 08:56:47.147"></status>
+</test>
+<test id="s1-t4" name="Use TCP">
+<kw name="Set Use Tcp" library="DNSLibrary">
+<doc>Set TCP/UDP usage (by default will be used UDP)</doc>
+<status status="PASS" endtime="20160826 08:56:47.200" starttime="20160826 08:56:47.200"></status>
+</kw>
+<kw name="Query A For www.fastweb.it" library="DNSLibrary">
+<doc>Resolve a record of type ``rr_type``, keep an internal answer</doc>
+<msg timestamp="20160826 08:56:47.239" level="INFO">Attributes for record 0: address: 62.101.76.232</msg>
+<status status="PASS" endtime="20160826 08:56:47.239" starttime="20160826 08:56:47.200"></status>
+</kw>
+<kw name="Answer Is" library="DNSLibrary">
+<doc>Assert that the received answer is equal to parameters specified</doc>
+<arguments>
+<arg>${0}</arg>
+<arg>A</arg>
+<arg>address=62\\.101\\.76\\.232</arg>
+</arguments>
+<status status="PASS" endtime="20160826 08:56:47.240" starttime="20160826 08:56:47.239"></status>
+</kw>
+<status status="PASS" endtime="20160826 08:56:47.240" critical="yes" starttime="20160826 08:56:47.199"></status>
+</test>
+<status status="PASS" endtime="20160826 08:56:47.241" starttime="20160826 08:56:46.990"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="4">Critical Tests</stat>
+<stat fail="0" pass="4">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="E2E" pass="4">E2E</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
