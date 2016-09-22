@@ -61,3 +61,8 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+# robotframework output
+log.html
+report.html
+output.xml
