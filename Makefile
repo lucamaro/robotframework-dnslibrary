@@ -20,7 +20,7 @@ setup:
 test: unit e2e
 
 unit:
-	@nosetests --with-yanc --with-coverage --cover-erase --cover-html --cover-package DNSLibrary #--cover-min-percentage=80
+	@nosetests --with-coverage --cover-erase --cover-html --cover-package DNSLibrary #--cover-min-percentage=80
 
 e2e:
 	@pybot -d tmp/ tests/e2e.txt
