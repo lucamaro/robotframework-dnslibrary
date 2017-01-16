@@ -9,7 +9,6 @@
 # Copyright (c) 2016, Luca Maragnani <luca.maragnani@gmail.com>
 
 from setuptools import setup, find_packages
-from DNSLibrary import __version__
 
 tests_require = [
     'mock',
@@ -25,7 +24,7 @@ tests_require = [
 
 setup(
     name='robotframework-dnslibrary',
-    version=__version__,
+    version='0.1.0',
     description='Robotframework library to test DNS service',
     long_description='''
 Robotframework library to test DNS service
