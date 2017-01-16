@@ -76,21 +76,23 @@ class DNSLibrary(object):
     The aim is testing a DNS target as a client, using dnspython library.
     '''
 
-    def __init__(self, target=None):
+    def __init__(self, target=None, use_tcp=False, timeout=3):
         '''
             Initialize class, with optionally the target specified
         '''
         self.target = target
         self.resolver = None
         self.answers = None
-        self.use_tcp = False
+        self.use_tcp = use_tcp
+        self.timeout = timeout
 
-    def set_dns_target(self, target):
+    def set_dns_target(self, target, timeout=3):
         '''
             Set the new DNS target and force the reinitialization of resolver
         '''
         self.target = target
         self.resolver = None
+        self.timeout = timeout
 
     def set_use_tcp(self, use_tcp=True):
         '''
@@ -104,6 +106,8 @@ class DNSLibrary(object):
         '''
         if self.resolver is None:
             self.resolver = dns.resolver.Resolver()
+            self.resolver.timeout = self.timeout
+            self.resolver.lifetime = self.timeout
 
             if self.target is None:
                 logger.info("No target specified, using system resolver")
@@ -202,7 +206,3 @@ class DNSLibrary(object):
                 string.join(
                     errors,
                     '\n\t'))
-
-
-
-                    
